@@ -1,0 +1,21 @@
+# Environments
+venv/
+env/
+.env
+__pycache__/
+*.pyc
+
+# Data and Large Files
+data/
+*.safetensors
+*.bin
+*.pth
+*.pt
+*.zip
+*.tar
+*.gz
+
+# IDEs and System files
+.vscode/
+.idea/
+.DS_Store
