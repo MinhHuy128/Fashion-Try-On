@@ -1,0 +1,21 @@
+project_name: "fitai-tryon-diffusion"
+data_dir: "data/ACGPN_raw"
+save_dir: "models/checkpoints"
+
+# Architecture Selection: 
+# Options: "architecture_a", "architecture_b", "architecture_c", "architecture_d"
+architecture: "architecture_d"
+
+# Training Hyperparameters
+batch_size: 4
+learning_rate: 0.0001
+num_epochs: 20
+early_stopping_patience: 3
+gradient_accumulation_steps: 2
+
+# MLOps Config
+use_wandb: false
+use_mlflow: false
+
+# Data
+is_mock: false
