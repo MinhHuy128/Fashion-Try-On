@@ -42,3 +42,22 @@ class ClothesWarpingModule(nn.Module):
         theta = self.regressor(self.extract(x).view(b, -1)).view(-1, 2, 3)
         grid = F.affine_grid(theta, garment.size(), align_corners=False)
         return F.grid_sample(garment, grid, align_corners=False), grid
+
+class ContentFusionModule(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fusion = nn.Sequential(nn.Conv2d(7, 64, 3, padding=1), nn.ReLU(), nn.Conv2d(64, 3, 3, padding=1), nn.Tanh())
+    def forward(self, person, warped_garment, layout):
+        return self.fusion(torch.cat([person, warped_garment, layout], dim=1))
+
+class CustomLightweightTryOn(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.sgm = SemanticGenerationModule()
+        self.cwm = ClothesWarpingModule()
+        self.cfm = ContentFusionModule()
+    def forward(self, person, garment, pose):
+        layout = self.sgm(pose, garment)
+        warped, grid = self.cwm(garment, layout)
+        output = self.cfm(person, warped, layout)
+        return output, warped, layout, grid
