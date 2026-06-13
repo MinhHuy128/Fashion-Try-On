@@ -3,3 +3,6 @@ torchvision
 numpy
 Pillow
 opencv-python
+diffusers
+transformers
+accelerate
