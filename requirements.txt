@@ -7,3 +7,8 @@ diffusers
 transformers
 accelerate
 peft
+fastapi
+uvicorn
+pydantic
+python-multipart
+aiofiles
