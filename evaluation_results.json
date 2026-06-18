@@ -1,0 +1,7 @@
+{
+    "Garment_Alignment_Score_CLIP": 0.7405,
+    "Text_Alignment_Score_CLIP": 0.2895,
+    "evaluated_output": "outputs/output_tryon_demo.png",
+    "garment_reference": "images/cloth.jpg",
+    "prompt": "A highly detailed, photorealistic image of a person wearing this exact t-shirt, perfect texture and logo matching, 8k resolution"
+}
