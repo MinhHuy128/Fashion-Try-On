@@ -1,5 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head><title>Try On</title><link rel='stylesheet' href='style.css'></head>
-<body><h1>Fashion Try On</h1></body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitAI Virtual Try-On</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>FitAI Virtual Try-On</h1>
+            <p>Experience the future of fashion. Upload a person and a garment to see the magic.</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <!-- Person Upload -->
+                <div class="upload-card" id="person-card">
+                    <h3>Person</h3>
+                    <div class="drop-zone" id="person-dropzone">
+                        <span class="drop-text">Drag & Drop or Click to Upload</span>
+                        <input type="file" id="person-input" accept="image/*" hidden>
+                        <img id="person-preview" class="preview-img" hidden>
+                    </div>
+                </div>
+
+                <!-- Garment Upload -->
+                <div class="upload-card" id="garment-card">
+                    <h3>Garment</h3>
+                    <div class="drop-zone" id="garment-dropzone">
+                        <span class="drop-text">Drag & Drop or Click to Upload</span>
+                        <input type="file" id="garment-input" accept="image/*" hidden>
+                        <img id="garment-preview" class="preview-img" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button id="tryon-btn" disabled>Generate Try-On</button>
+            </div>
+
+            <div class="result-section" id="result-section" hidden>
+                <h3>Result</h3>
+                <div class="result-card">
+                    <div class="loader" id="loader" hidden>
+                        <div class="spinner"></div>
+                        <p>AI is processing...</p>
+                    </div>
+                    <img id="result-img" class="result-img" hidden>
+                    <div id="error-message" class="error-message" hidden></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
