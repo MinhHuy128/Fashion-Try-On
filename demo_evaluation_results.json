@@ -1,0 +1,21 @@
+{
+    "evaluation_mode": "Single Demo Sample Alignment (Qualitative Quick-Check)",
+    "description": "Calculates CLIP Cosine Similarity between a reference garment and a generated try-on demo image.",
+    "sample_details": {
+        "garment_reference": "images/cloth.jpg",
+        "tryon_output": "outputs/output_tryon_demo.png",
+        "prompt": "A highly detailed, photorealistic image of a person wearing this exact t-shirt, perfect texture and logo matching, 8k resolution"
+    },
+    "demo_sample_metrics": {
+        "Garment_Alignment_Score_CLIP": 0.7405,
+        "Text_Alignment_Score_CLIP": 0.2895
+    },
+    "full_benchmark_reference": {
+        "description": "For official benchmark results evaluated across all 2,032 Zalando VITON test pairs (SSIM: 0.8523, CLIP: 0.7427, FID: 8.74, Latency: 91.49ms), please refer to evaluation/metrics.json",
+        "dataset": "Zalando VITON Test Split (2,032 pairs)",
+        "full_test_clip_garment_alignment": 0.7427,
+        "full_test_ssim": 0.8523,
+        "full_test_fid": 8.74,
+        "benchmark_file": "evaluation/metrics.json"
+    }
+}
