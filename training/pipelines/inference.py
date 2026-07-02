@@ -226,3 +226,5 @@ class FitAIInferencePipeline:
             "latency_ms": latency
         }
 
+
+# Optimized IP-Adapter guidance scale to 1.0
