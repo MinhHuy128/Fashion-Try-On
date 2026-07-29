@@ -12,3 +12,11 @@ uvicorn
 pydantic
 python-multipart
 aiofiles
+torchmetrics
+lpips
+pytorch-fid
+scikit-image
+open-clip-torch
+tabulate
+gdown
+torch-fidelity
