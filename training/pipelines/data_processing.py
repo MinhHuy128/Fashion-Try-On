@@ -19,11 +19,58 @@ class ACGPNDataset(Dataset):
         self.img_size = img_size
         self.is_mock = is_mock
         
-        # ACGPN Structure
-        self.person_dir = os.path.join(data_dir, f"{split}_img")
-        self.garment_dir = os.path.join(data_dir, f"{split}_color")
-        self.pose_dir = os.path.join(data_dir, f"{split}_pose")
-        self.mask_dir = os.path.join(data_dir, f"{split}_label")
+        # Smart search across data_dir and any immediate subdirectories
+        search_roots = [data_dir]
+        if os.path.exists(data_dir):
+            for entry in os.listdir(data_dir):
+                full_sub = os.path.join(data_dir, entry)
+                if os.path.isdir(full_sub):
+                    search_roots.append(full_sub)
+
+        possible_person_dirs = []
+        for root in search_roots:
+            possible_person_dirs.extend([
+                os.path.join(root, f"{split}_img"),
+                os.path.join(root, split, "image"),
+                os.path.join(root, f"{split}_image"),
+                os.path.join(root, "image"),
+                os.path.join(root, "test_img"),
+                os.path.join(root, "train_img")
+            ])
+        self.person_dir = next((d for d in possible_person_dirs if os.path.exists(d)), possible_person_dirs[0])
+        
+        possible_garment_dirs = []
+        for root in search_roots:
+            possible_garment_dirs.extend([
+                os.path.join(root, f"{split}_color"),
+                os.path.join(root, f"{split}_cloth"),
+                os.path.join(root, split, "cloth"),
+                os.path.join(root, "cloth"),
+                os.path.join(root, "test_color"),
+                os.path.join(root, "train_color")
+            ])
+        self.garment_dir = next((d for d in possible_garment_dirs if os.path.exists(d)), possible_garment_dirs[0])
+
+        possible_pose_dirs = []
+        for root in search_roots:
+            possible_pose_dirs.extend([
+                os.path.join(root, f"{split}_pose"),
+                os.path.join(root, split, "pose"),
+                os.path.join(root, split, "openpose_img"),
+                os.path.join(root, "pose")
+            ])
+        self.pose_dir = next((d for d in possible_pose_dirs if os.path.exists(d)), possible_pose_dirs[0])
+
+        possible_mask_dirs = []
+        for root in search_roots:
+            possible_mask_dirs.extend([
+                os.path.join(root, f"{split}_label"),
+                os.path.join(root, split, "image-parse"),
+                os.path.join(root, f"{split}_edge"),
+                os.path.join(root, split, "cloth-mask"),
+                os.path.join(root, "image-parse")
+            ])
+        self.mask_dir = next((d for d in possible_mask_dirs if os.path.exists(d)), possible_mask_dirs[0])
         
         self.image_names = []
         if not is_mock and os.path.exists(self.person_dir):
