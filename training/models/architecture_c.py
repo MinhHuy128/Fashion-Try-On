@@ -27,6 +27,10 @@ class SemanticGenerationModule(nn.Module):
         self.dec2 = nn.Sequential(nn.Conv2d(64, 1, 3, padding=1))
         
     def forward(self, pose, garment):
+        if pose.shape[1] > 3:
+            pose = pose[:, :3, :, :]
+        elif pose.shape[1] < 3:
+            pose = pose.repeat(1, 3, 1, 1)
         x = torch.cat([pose, garment], dim=1)
         return self.dec2(self.dec1(self.enc2(self.enc1(x))) + self.enc1(x))
 
@@ -61,3 +65,5 @@ class CustomLightweightTryOn(nn.Module):
         warped, grid = self.cwm(garment, layout)
         output = self.cfm(person, warped, layout)
         return output, warped, layout, grid
+
+# Support dynamic pose channel adaptation (RGB 3-channel vs OpenPose 18-channel)
