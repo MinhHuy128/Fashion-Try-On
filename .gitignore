@@ -5,3 +5,8 @@ venv/
 .env
 .DS_Store
 *.log
+evaluation/visual_samples/
+tmp_2/
+present/
+val_tmp/
+code_tmp/

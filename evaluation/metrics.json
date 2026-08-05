@@ -1,0 +1,14 @@
+{
+    "Model_Name": "SOTADiffusionTryOn",
+    "Total_Test_Samples": 2032,
+    "SSIM": 0.8523,
+    "LPIPS_AlexNet": 0.0312,
+    "LPIPS_VGG": 0.071,
+    "PSNR_dB": 28.11,
+    "FID": 8.74,
+    "CLIP_Garment_Alignment": 0.7427,
+    "Avg_Latency_ms": 91.49,
+    "FPS": 10.9,
+    "Peak_VRAM_MB": 7237.7,
+    "Device": "cuda:0"
+}
